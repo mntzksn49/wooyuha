@@ -127,21 +127,39 @@
       const chat = document.querySelector(".chat-screens");
       if (!chat || triggered) return;
 
-      const checkBottom = () => {
-        if (triggered || page !== "conversation") return;
+      let callTimer = null;
 
-        const remaining =
-          chat.scrollHeight - chat.scrollTop - chat.clientHeight;
+const checkBottom = () => {
+  if (triggered || page !== "conversation") return;
 
-        if (remaining <= 35) {
-          triggered = true;
-          setTimeout(() => {
-            if (page === "conversation") go("incoming");
-          }, 1200);
-        }
-      };
+  const remaining =
+    chat.scrollHeight - chat.scrollTop - chat.clientHeight;
 
-      chat.addEventListener("scroll", checkBottom);
+  // 必须真正到达聊天记录底部
+  if (remaining <= 5) {
+    if (callTimer) return;
+
+    callTimer = setTimeout(() => {
+      callTimer = null;
+
+      if (triggered || page !== "conversation") return;
+
+      const distance =
+        chat.scrollHeight - chat.scrollTop - chat.clientHeight;
+
+      if (distance <= 5) {
+        triggered = true;
+        go("incoming");
+      }
+    }, 3000);
+  } else {
+    // 离开底部就取消倒计时
+    clearTimeout(callTimer);
+    callTimer = null;
+  }
+};
+
+chat.addEventListener("scroll", checkBottom);
     }
 
     if (page === "playing") {
