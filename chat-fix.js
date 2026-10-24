@@ -523,3 +523,55 @@ render = function () {
   }
 };
 })();
+/* 修复 KKT 聊天气泡尺寸 */
+(function () {
+  const style = document.createElement("style");
+  style.textContent = `
+    .chat-screens .real-row {
+      margin: 5px 0 !important;
+      gap: 7px !important;
+      align-items: flex-start !important;
+    }
+
+    .chat-screens .real-body {
+      max-width: 78% !important;
+      width: auto !important;
+      min-width: 0 !important;
+      flex: 0 1 auto !important;
+    }
+
+    .chat-screens .real-bubble {
+      display: block !important;
+      width: fit-content !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 8px 11px !important;
+      margin: 0 !important;
+      border-radius: 13px !important;
+      font-size: 14px !important;
+      line-height: 1.4 !important;
+      text-align: left !important;
+      box-sizing: border-box !important;
+    }
+
+    .chat-screens .real-row.mine .real-body {
+      margin-left: auto !important;
+    }
+
+    .chat-screens .real-row.mine .real-bubble {
+      margin-left: auto !important;
+      background: #ffe934 !important;
+    }
+
+    .chat-screens .real-name {
+      margin-bottom: 3px !important;
+      font-size: 11px !important;
+    }
+
+    .chat-screens .real-avatar {
+      width: 34px !important;
+      height: 34px !important;
+    }
+  `;
+  document.head.appendChild(style);
+})();
