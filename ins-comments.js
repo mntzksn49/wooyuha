@@ -31,7 +31,11 @@
       ]
     }
   };
-
+  const baseLikes = {
+    post1: 287,
+    post2: 436,
+    post4: 192
+  };
   const key = 'wooyuha_ins_likes';
   let likes = {};
   try {
@@ -118,7 +122,7 @@
           aria-label="查看评论">♧</button>
       </div>
       <div class="ins-count" data-ins-count="${id}">
-        ${likes[id] ? 1 : 0} 次赞
+        ${baseLikes[id] + (likes[id] ? 1 : 0)} 次赞
       </div>
     `;
 
@@ -166,7 +170,7 @@
       );
 
       if (count) {
-        count.textContent = (likes[id] ? 1 : 0) + ' 次赞';
+        count.textContent =   (baseLikes[id] + (likes[id] ? 1 : 0)) + ' 次赞';
       }
       return;
     }
