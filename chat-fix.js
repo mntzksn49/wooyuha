@@ -405,7 +405,7 @@
       line-height: 1.55;
       color: #242424;
       overflow-wrap: anywhere;
-      white-space: pre-wrap;
+      white-space: normal;
     }
     .chat-screens .mine .real-bubble {
       background: #ffe934;
