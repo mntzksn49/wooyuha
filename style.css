@@ -43,3 +43,20 @@
   max-width: 190px !important;
   height: auto !important;
 }
+/* 修复 KKT 聊天气泡过高 */
+.chat-screens .real-row,
+.chat-screens .real-body,
+.chat-screens .real-bubble {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.chat-screens .real-bubble {
+  display: inline-block !important;
+  width: auto !important;
+  padding: 7px 11px !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+  text-align: left !important;
+  flex: none !important;
+}
