@@ -151,7 +151,7 @@ const checkBottom = () => {
         triggered = true;
         go("incoming");
       }
-    }, 4000);
+    }, 3000);
   } else {
     // 离开底部就取消倒计时
     clearTimeout(callTimer);
