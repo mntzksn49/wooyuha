@@ -113,3 +113,78 @@
   style.textContent = css;
   document.head.appendChild(style);
 })();
+
+/* 聊天翻到底部自动来电 + 接听播放音频 */
+(function () {
+  const oldRender = render;
+  let triggered = false;
+  let audio = null;
+
+  render = function () {
+    oldRender();
+
+    if (page === "conversation") {
+      const chat = document.querySelector(".chat-screens");
+      if (!chat || triggered) return;
+
+      const checkBottom = () => {
+        if (triggered || page !== "conversation") return;
+
+        const remaining =
+          chat.scrollHeight - chat.scrollTop - chat.clientHeight;
+
+        if (remaining <= 35) {
+          triggered = true;
+          setTimeout(() => {
+            if (page === "conversation") go("incoming");
+          }, 1200);
+        }
+      };
+
+      chat.addEventListener("scroll", checkBottom);
+    }
+
+    if (page === "playing") {
+      const notice = document.querySelector(".call-missing");
+      if (notice) notice.remove();
+
+      audio = new Audio("10月24日.mp3");
+      audio.preload = "auto";
+
+      audio.addEventListener("ended", () => {
+        audio = null;
+        go("home");
+      });
+
+      audio.play().catch(() => {
+        const caller = document.querySelector(".caller");
+        if (caller) {
+          caller.insertAdjacentHTML(
+            "beforeend",
+            '<button id="play-call-audio">▶ 播放通话录音</button>'
+          );
+          document.getElementById("play-call-audio").onclick =
+            () => audio.play();
+        }
+      });
+    }
+  };
+
+  const oldGo = go;
+  go = function (destination) {
+    if (audio && page === "playing") {
+      audio.pause();
+      audio = null;
+    }
+
+    if (destination === "conversation") triggered = false;
+
+    oldGo(destination);
+
+    // 取消原来解锁后12秒自动来电
+    if (destination === "home" && incomingTimer) {
+      clearTimeout(incomingTimer);
+      incomingTimer = null;
+    }
+  };
+})();
