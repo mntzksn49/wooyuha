@@ -172,10 +172,10 @@
 
   const oldGo = go;
   go = function (destination) {
-    if (audio && page === "playing") {
-      audio.pause();
-      audio = null;
-    }
+    if (audio && page === "playing" && destination !== "playing") {
+  audio.pause();
+  audio = null;
+}
 
     if (destination === "conversation") triggered = false;
 
