@@ -511,10 +511,15 @@
 
   const previousRender = render;
 
-  render = function () {
-    previousRender();
-    if (page === "conversation") {
-      buildConversation();
-    }
-  };
+render = function () {
+  previousRender();
+
+  if (page === "conversation") {
+    buildConversation();
+    requestAnimationFrame(() => {
+      const chat = document.querySelector(".chat-screens");
+      if (chat) chat.scrollTop = 0;
+    });
+  }
+};
 })();
