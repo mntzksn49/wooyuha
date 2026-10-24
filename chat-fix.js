@@ -152,9 +152,16 @@
       audio.preload = "auto";
 
       audio.addEventListener("ended", () => {
-        audio = null;
-        go("conversation");
-      });
+  audio = null;
+  triggered = true;
+  go("conversation");
+
+  setTimeout(() => {
+    const chat = document.querySelector(".chat-screens");
+    if (chat) chat.scrollTop = chat.scrollHeight;
+  }, 100);
+});
+
 
       audio.play().catch(() => {
         const caller = document.querySelector(".caller");
@@ -177,7 +184,7 @@
   audio = null;
 }
 
-    if (destination === "conversation") triggered = false;
+    
 
     oldGo(destination);
 
