@@ -7,3 +7,39 @@
 
 /* Native, individually scrollable Kakao-style conversation */
 .chat-thread{height:calc(100% - 100px);overflow-y:auto;overscroll-behavior:contain;background:#aec4d4;padding:16px 12px 24px;scrollbar-width:thin}.chat-day{display:flex;justify-content:center;margin:8px 0 22px}.chat-day span{background:#90a9bb;color:#fff;border-radius:30px;padding:6px 13px;font-size:12px}.msg-row{display:flex;align-items:flex-start;gap:7px;margin:9px 0}.msg-avatar{width:36px;height:36px;object-fit:cover;border-radius:50%;flex-shrink:0}.msg-main{min-width:0;max-width:78%}.msg-sender{font-size:12px;color:#455260;margin-bottom:5px}.msg-bubble{display:inline-block;background:white;padding:10px 12px;border-radius:14px;font-size:15px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left;box-shadow:0 1px 1px #00000009}.msg-row.mine{justify-content:flex-end}.mine .msg-bubble{background:#ffe73e}.msg-bubble.photo-msg{padding:0;background:transparent;box-shadow:none;max-width:210px}.chat-inline-photo{border:0;padding:0;background:transparent;display:block}.chat-inline-photo img{display:block;width:100%;max-width:210px;max-height:300px;object-fit:cover;border-radius:10px}.call-bubble{display:flex;align-items:center;gap:9px}.call-bubble svg{width:18px;height:18px}.chat-call{padding-bottom:60px}
+/* KKT 聊天气泡紧凑修复 */
+.chat-screens .real-row {
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 6px 0 !important;
+}
+
+.chat-screens .real-body {
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  flex: 0 1 auto !important;
+}
+
+.chat-screens .real-bubble {
+  display: block !important;
+  width: fit-content !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  padding: 8px 11px !important;
+  margin: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  text-align: left !important;
+}
+
+.chat-screens .real-row.mine .real-bubble {
+  margin-left: auto !important;
+}
+
+.chat-screens .real-photo {
+  width: auto !important;
+  max-width: 190px !important;
+  height: auto !important;
+}
