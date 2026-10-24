@@ -748,7 +748,7 @@ if (!localStorage.getItem('strawberry_note_added_v1')) {
 
   /* 备忘录：创建、编辑、删除 */
   function notesHTML() {
-    const notes = saved.notes || [];
+    const notes = saved.notes || [];  if (!notes.some(note => note.title === '🍓')) {   notes.unshift({     title: '🍓',     body: '🎂：0907'   });   saved.notes = notes;   save(); }
 
     if (state.notesIndex >= 0) {
       const note = notes[state.notesIndex];
