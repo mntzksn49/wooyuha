@@ -31,13 +31,22 @@
     browserQuery: '',
     clockTicker: null
   };
-  /* 预设备忘录：只在第一次打开时添加 */
-  if (!Array.isArray(saved.notes) || saved.notes.length === 0) {
-    saved.notes = [
-      { title: '🍓', body: '🎂：0907' }
-    ];
-    localStorage.setItem(KEY, JSON.stringify(saved));
+/* 初始化草莓备忘录，只添加一次 */
+if (!localStorage.getItem('strawberry_note_added_v1')) {
+  saved.notes = Array.isArray(saved.notes) ? saved.notes : [];
+
+  if (!saved.notes.some(note =>
+    note.title === '🍓' && note.body === '🎂：0907'
+  )) {
+    saved.notes.unshift({
+      title: '🍓',
+      body: '🎂：0907'
+    });
   }
+
+  localStorage.setItem(KEY, JSON.stringify(saved));
+  localStorage.setItem('strawberry_note_added_v1', 'yes');
+}
   const save = () => {
     try {
       localStorage.setItem(KEY, JSON.stringify({
