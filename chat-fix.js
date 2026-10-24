@@ -497,25 +497,7 @@ chat.addEventListener("scroll", checkBottom);
       return date + messages;
     }).join("");
 
-    let called = false;
-    let callTimer = null;
-
-    const onScroll = () => {
-      if (called || page !== "conversation") return;
-      const remaining =
-        container.scrollHeight -
-        container.scrollTop -
-        container.clientHeight;
-
-      if (remaining <= 30) {
-        called = true;
-        callTimer = setTimeout(() => {
-          if (page === "conversation") go("incoming");
-        }, 1600);
-      }
-    };
-
-    container.addEventListener("scroll", onScroll);
+    
 
     container.addEventListener("click", e => {
       const photo = e.target.closest("[data-real-photo]");
