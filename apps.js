@@ -32,7 +32,7 @@
     clockTicker: null
   };
   /* 预设备忘录：只在第一次打开时添加 */
-  if (!Array.isArray(saved.notes)) {
+  if (!Array.isArray(saved.notes) || saved.notes.length === 0) {
     saved.notes = [
       { title: '🍓', body: '🎂：0907' }
     ];
