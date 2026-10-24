@@ -463,9 +463,7 @@
             `}
             <div class="real-body">
               ${mine ? "" : '<div class="real-name">啾💕</div>'}
-              <div class="real-bubble ${isPhoto ? "real-photo-wrap" : ""} ${content.includes("未接来电") ? "real-call-record" : ""}">
-                ${bubble}
-              </div>
+              <div class="real-bubble ${isPhoto ? "real-photo-wrap" : ""} ${content.includes("未接来电") ? "real-call-record" : ""}">${bubble}</div>
             </div>
           </div>
         `;
