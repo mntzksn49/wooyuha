@@ -60,3 +60,40 @@
   text-align: left !important;
   flex: none !important;
 }
+/* KKT 聊天气泡最终调整 */
+.chat-screens .real-row {
+  align-items: flex-start !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 5px 0 !important;
+}
+
+.chat-screens .real-body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  flex: 0 1 auto !important;
+  width: auto !important;
+}
+
+.chat-screens .real-row.mine {
+  justify-content: flex-end !important;
+}
+
+.chat-screens .real-row.mine .real-body {
+  align-items: flex-end !important;
+}
+
+.chat-screens .real-bubble {
+  display: block !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 7px 11px !important;
+  margin: 0 !important;
+  flex: none !important;
+  line-height: 1.4 !important;
+  text-align: left !important;
+  white-space: normal !important;
+}
