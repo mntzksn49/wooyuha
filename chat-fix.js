@@ -153,7 +153,7 @@
 
       audio.addEventListener("ended", () => {
         audio = null;
-        go("home");
+        go("conversation");
       });
 
       audio.play().catch(() => {
