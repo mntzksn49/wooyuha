@@ -31,7 +31,13 @@
     browserQuery: '',
     clockTicker: null
   };
-
+  /* 预设备忘录：只在第一次打开时添加 */
+  if (!Array.isArray(saved.notes)) {
+    saved.notes = [
+      { title: '🍓', body: '🎂：0907' }
+    ];
+    localStorage.setItem(KEY, JSON.stringify(saved));
+  }
   const save = () => {
     try {
       localStorage.setItem(KEY, JSON.stringify({
@@ -422,7 +428,7 @@
       </button>`;
     }).join('');
 
-    const list = events[state.selectedDate] || [];
+    const isBirthday = state.selectedDate.endsWith('-09-07');     const list = [       ...(isBirthday ? ['🍓生日'] : []),       ...(events[state.selectedDate] || [])     ];
 
     return top('calendar') + `
       <h1>日历</h1>
@@ -449,10 +455,13 @@
         ${list.length ? list.map((event, i) => `
           <div class="ios-item">
             <span>${esc(event)}</span>
-            <button class="ios-secondary"
-              data-ios="delete-event" data-index="${i}">
-              删除
-            </button>
+            ${isBirthday && i === 0 ? '' : `
+  <button class="ios-secondary"
+    data-ios="delete-event"
+    data-index="${isBirthday ? i - 1 : i}">
+    删除
+  </button>
+`}
           </div>
         `).join('') : `
           <div class="ios-item ios-muted">暂无日程</div>
